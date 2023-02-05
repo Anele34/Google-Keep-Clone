@@ -1,0 +1,39 @@
+<html>
+    <head>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans:400,500&display=swap"></link>
+      <link rel="stylesheet" href="styles.css"></link>  
+      <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTJHvBtb2mGsmaN2rgg_vobwYEIBjwwJVgpA-AE5ZLj3rM2tVTXdRk&usqp=CAU">
+      <title>Google Keep</title>
+    </head>
+    <body>
+      <div class="modal">
+         <div class="modal-content">
+            <input class="modal-title" placeholder="Title" type="text">   
+            <input class="modal-text" placeholder="Take a note..." type="text">   
+            <span class="modal-close-button">Close</span>
+          </div>    
+      </div> 
+       <main>
+          <header>
+              <img class="header-logo" src="https://www.gstatic.com/images/branding/product/1x/keep_2020q4_48dp.png">
+              <h2 class="header-title">Keep</h2>
+          </header>     
+          <div id="form-container">
+              <form id="form" autocomplete="off">
+                 <input id="note-title" placeholder="Title" type="text">
+                 <input id="note-text" placeholder="Take a note..." type="text"> 
+                 <div id="form-buttons">
+                    <button type="submit" id="submit-button">Submit</button> 
+                    <button type="button" id="form-close-button">Close</button> 
+                 </div>
+              </form>              
+          </div>
+          <div id="notes"></div>
+          <div id="placeholder">
+              <img id="placeholder-logo" src="https://icon.now.sh/lightbulb_outline">
+              <p id="placeholder-text">Notes you add appear here</p>
+          </div>
+       </main> 
+       <script src="app.js"></script>
+    </body>
+</html>
