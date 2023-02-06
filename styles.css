@@ -30,10 +30,10 @@
   }
   
   #placeholder-logo {
-    height: 120px;
+    height: 250px;
     margin: 20px;
     opacity: 0.1;
-    width: 120px;
+    width: 900px;
   }
   
   #placeholder-text {
@@ -257,7 +257,7 @@
   }
   
   .toolbar {
-    opacity: 0;
+    opacity: 1;
     flex-direction: row-reverse;
     align-items: center;
     color: rgba(0, 0, 0, 0.54);
@@ -269,10 +269,19 @@
     transition: opacity 0.218s ease-in-out, background-color 0.218s ease-in-out,
       box-shadow 0.218s ease-in-out;
   }
-  
-  .toolbar:hover {
-    opacity: 1;
+
+  .toolbar img{
+    padding: 3px;
+    margin-left: 17px;
   }
+
+  .toolbar img:hover{
+    background-color: #d1d6da;
+    border-radius: 100%;
+    color: #80868b;
+  }
+
+  
   
   .toolbar-color,
   .toolbar-delete {
@@ -373,6 +382,11 @@
     visibility: visible;
     transform: scale(1);
     transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+  }
+
+  .close-modal {
+    opacity: 0;
+    visibility: none;
   }
   
   #white {
