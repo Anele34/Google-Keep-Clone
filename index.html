@@ -1,40 +1,115 @@
 <html>
     <head>
       <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans:400,500&display=swap"></link>
-      
       <link rel="stylesheet" href="styles.css"></link>  
       <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTJHvBtb2mGsmaN2rgg_vobwYEIBjwwJVgpA-AE5ZLj3rM2tVTXdRk&usqp=CAU">
+      <script src="https://www.gstatic.com/firebasejs/ui/4.8.0/firebase-ui-auth.js"></script>
+      <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.0/firebase-ui-auth.css" />
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <title>Google Keep</title>
     </head>
     <body>
-      <div class="modal">
-         <div class="modal-content">
-            <input class="modal-title" placeholder="Title" type="text">   
-            <input class="modal-text" placeholder="Take a note..." type="text">   
-            <span class="modal-close-button" onclick="">Close</span>
-          </div>    
-      </div> 
-       <main>
-          <header>
-              <img class="header-logo" src="https://www.gstatic.com/images/branding/product/1x/keep_2020q4_48dp.png">
-              <h2 class="header-title">Keep</h2>
-          </header>     
-          <div id="form-container">
-              <form id="form" autocomplete="off">
-                 <input id="note-title" placeholder="Title" type="text">
-                 <input id="note-text" placeholder="Take a note..." type="text"> 
-                 <div id="form-buttons">
-                    <button type="submit" id="submit-button">Submit</button> 
-                    <button type="button" id="form-close-button">Close</button> 
+
+        <div id="firebaseui-auth-container"></div>
+
+        <div id="app">
+
+            <div class="modal">
+                <div class="modal-content">
+                   <input class="modal-title" placeholder="Title" type="text">   
+                   <input class="modal-text" placeholder="Take a note..." type="text"> 
+                   <span class="modal-close-button" onclick="">Close</span>
+                 </div>    
+             </div> 
+              <main>
+               
+                 <header>
+                     <img class="header-logo" src="https://www.gstatic.com/images/branding/product/1x/keep_2020q4_48dp.png">
+                     <h2 class="header-title">Keep</h2>
+
+                     <div class="tooltip logout">
+                        <span class="material-icons hover">account_circle</span>
+                        <span class="auth-user" title="logout"></span>
+                     </div>
+                 </header>     
+                 <div id="form-container">
+                     <form id="form" autocomplete="off">
+                        <input id="note-title" placeholder="Title" type="text">
+                        <input id="note-text" placeholder="Take a note..." type="text"> 
+                        <div id="form-buttons">
+                           <button type="submit" id="submit-button">Submit</button> 
+                           <button type="button" id="form-close-button">Close</button> 
+                        </div>
+                     </form>              
                  </div>
-              </form>              
-          </div>
-          <div id="notes"></div>
-          <div id="placeholder">
-              <img id="placeholder-logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuHiW6bGAg7zUfVdhotsoqn7a2W3ON903oEQ&usqp=CAU">
-              <p id="placeholder-text">Notes you add appear here</p>
-          </div>
-       </main> 
-       <script src="app.js"></script>
-    </body>
+                 <div id="notes"></div>
+                 <div id="placeholder">
+                     <img id="placeholder-logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuHiW6bGAg7zUfVdhotsoqn7a2W3ON903oEQ&usqp=CAU">
+                     <p id="placeholder-text">Notes you add appear here</p>
+                 </div>
+              </main> 
+
+        </div>
+    
+    
+<!--  // Import the functions you need from the SDKs you need -->
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+  <!-- // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries -->
+  
+<!-- // Add Firebase products that you want to use -->
+<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-firestore.js"></script>
+
+<script>
+  
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyCt9Xt38D2TIgG-u1_BlIqUE0Ie1rgs3ws",
+      authDomain: "keep-980c7.firebaseapp.com",
+      projectId: "keep-980c7",
+      storageBucket: "keep-980c7.appspot.com",
+      messagingSenderId: "135355783468",
+      appId: "1:135355783468:web:215c528363425a889f7489"
+    };
+
+     // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+    // Add a new document in collection "cities"
+      // db.collection("users").doc("someUserId").set({
+      //     notes:[
+      //       {
+      //         id:"4nfkjbv2r5nvn",
+      //         title: "title",
+      //         text: "myNote"
+      //       }
+      //     ]
+      // })
+      // .then(() => {
+      //     console.log("Document successfully written!");
+      // })
+      // .catch((error) => {
+      //     console.error("Error writing document: ", error);
+      // });
+
+        //       var docRef = db.collection("users").doc("someUserId");
+
+        // docRef.get().then((doc) => {
+        //     if (doc.exists) {
+        //         console.log("Document data:", doc.data().notes);
+        //     } else {
+        //         // doc.data() will be undefined in this case
+        //         console.log("No such document!");
+        //     }
+        // }).catch((error) => {
+        //     console.log("Error getting document:", error);
+        // });
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cuid/1.3.8/browser-cuid.min.js" integrity="sha512-AvtLzKgbVcTZJ0QZ3nLJoTGN2wiE/emjebM9xneyqhtEBRTsNB+8oeQGkOmyOF+gnJd7k3Zvnghs9m6EuTpTEw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="app.js"></script>
+</body>
 </html>

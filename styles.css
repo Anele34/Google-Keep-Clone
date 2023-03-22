@@ -74,11 +74,16 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 2em;
+    margin-top: 1em;
+    border-bottom: 0.5px solid rgb(202, 199, 199);
+    width: 1400px;
+    margin-left: -220px;
+  
   }
   
   .header-logo {
     height: 4em;
+    margin-bottom: 1em;
   }
   
   .header-title {
@@ -86,6 +91,21 @@
     font-size: 2rem;
     padding-top: 4px;
     padding-left: 4px;
+  }
+
+  header .tooltip{
+    margin-left: 998px;
+    display: flex;
+  }
+
+  .tooltip span{
+    padding: 5px;
+  }
+
+  header .tooltip .auth-user{
+    cursor: pointer;
+    width:100px;
+    margin-top: 2px;
   }
   
   #notes {
@@ -199,7 +219,7 @@
   }
   
   #submit-button:hover,
-  #form-close-button:hover {
+  #form-close-button:hover{
     filter: brightness(95%);
   }
   
@@ -352,7 +372,6 @@
     width: 24rem;
     border-radius: 0.5rem;
   }
-  
   .modal-close-button {
     float: right;
     margin: 0.2em 0;
@@ -372,6 +391,7 @@
     background-color: rgb(251, 251, 251);
     cursor: pointer;
   }
+  
   
   .modal-close-button:hover {
     background-color: rgba(95, 99, 104, 0.039);
