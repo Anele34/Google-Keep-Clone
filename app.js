@@ -56,6 +56,7 @@ class App {
 
     this.$firebaseAuthContainer.style.display = "none";
     this.$app.style.display = "block";
+    this.fetchNotesFormDB();
 
   }
 
@@ -69,7 +70,7 @@ class App {
         callbacks: {
           signInSuccessWithAuthResult: (authResult, redirectUrl) =>{
 
-            console.log("userId",authResult.user.uid);
+            
              this.userId = authResult.user.uid;
              this.$authUserText.innerHTML = user.displayName;
              this.redirectToApp();
@@ -188,10 +189,10 @@ class App {
   addNote({title, text }) {
 
     if(text != ""){
-      const newNote = new Note(cuid(), title, text);
+      const newNote = {id: cuid(), title, text};
       this.notes = [...this.notes, newNote];
       
-      this.displayNotes();
+      this.render();
     }
       this.closeForm();
 
@@ -208,7 +209,55 @@ class App {
         return note;
     });
     
-      this.displayNotes();
+      this.render();
+  }
+
+  render() {
+    this.saveNotes();
+    this.displayNotes();
+  }
+
+  fetchNotesFormDB() {
+
+    //fetching noted from Database
+
+    var docRef = db.collection("users").doc(this.userId);
+
+    docRef.get().then((doc) => {
+        if (doc.exists) {
+            console.log("Document data:", doc.data().notes);
+            this.notes = doc.data().notes;
+            this.displayNotes();
+        } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+
+            db.collection("users").doc(this.userId).set({
+              notes:[]
+            })
+            .then(() => {
+                console.log("User successfully created!");
+            })
+            .catch((error) => {
+                console.error("Error creating user: ", error);
+            });
+        }
+    }).catch((error) => {
+        console.log("Error getting document:", error);
+    });
+  }
+
+  saveNotes(){
+    //Add a new note in collection "users"
+      db.collection("users").doc(this.userId).set({
+          notes:this.notes
+      })
+      .then(() => {
+          console.log("Document successfully written!");
+      })
+      .catch((error) => {
+          console.error("Error writing document: ", error);
+      });
   }
 
   displayNotes() {
